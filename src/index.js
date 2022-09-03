@@ -26,17 +26,19 @@ function getData(event) {
     countrySearch.fetchCountries().
         then(countries => {
             if (countries.length > MAX_COUNTRIES_QUANTITY) {
-            Notify.info('Too many matches found. Please enter a more specific name.');
-            return;
+                Notify.info('Too many matches found. Please enter a more specific name.');
+                return countries;
             }
             if (countries.length < MAX_COUNTRIES_QUANTITY && countries.length > MIN_COUNTRIES_QUANTITY) {
                 destroyHtml(countryEl);
                 ParseShortCountriesList(countries);
-                return;
+                return countries;
             }
-            destroyHtml(countriesListEl);
-            ParseCountryEl(countries);
-            return countries;
+
+                destroyHtml(countriesListEl);
+                ParseCountryEl(countries);
+                return countries;
+                
         }).catch(
             error => {
                 Notify.failure('Oops, there is no country with that name');
