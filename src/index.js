@@ -26,6 +26,8 @@ function getData(event) {
     countrySearch.fetchCountries().
         then(countries => {
             if (countries.length > MAX_COUNTRIES_QUANTITY) {
+                destroyHtml(countryEl);
+                destroyHtml(countriesListEl);
                 Notify.info('Too many matches found. Please enter a more specific name.');
                 return countries;
             }
@@ -34,7 +36,7 @@ function getData(event) {
                 ParseShortCountriesList(countries);
                 return countries;
             }
-
+            
                 destroyHtml(countriesListEl);
                 ParseCountryEl(countries);
                 return countries;
